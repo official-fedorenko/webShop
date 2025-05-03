@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <script src="./js/main.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Шапка -->
+    <header class="shop-header">
+      <h1 class="shop-title">MiniShop</h1>
+      <div class="cart-icon" id="cart-toggle">
+        🛒 <span id="cart-count">0</span>
+      </div>
+    </header>
+
+    <!-- Основной блок с товарами -->
+    <main class="shop-main">
+      <section id="product-list" class="product-list">
+        <!-- Сюда будем добавлять карточки через JS -->
+      </section>
+    </main>
+
+    <!-- Окно корзины -->
+    <div class="cart-window" id="cart-window">
+      <div class="cart-content">
+        <span id="cart-close" class="cart-close">×</span>
+        <button id="clear-cart" class="clear-cart">Очистить корзину</button>
+        <div id="confirm-clear" class="confirm-box">
+          <p>Вы уверены, что хотите очистить корзину?</p>
+          <button id="confirm-yes" class="confirm-yes">Да</button>
+          <button id="confirm-no" class="confirm-no">Нет</button>
+        </div>
+        <h2>Ваша корзина</h2>
+        <ul id="cart-items" class="cart-items"></ul>
+        <div class="cart-total">
+          <button id="checkout-btn" class="checkout-btn">Оформить заказ</button>
+          <p>Итого: <span id="cart-total">0</span> €</p>
+        </div>
+        <form id="checkout-form" class="checkout-form">
+          <label>
+            Имя:
+            <input type="text" id="customer-name" required />
+          </label>
+          <label>
+            Email:
+            <input type="email" id="customer-email" required />
+          </label>
+          <label>
+            Телефон:
+            <input type="tel" id="customer-phone" required />
+          </label>
+          <label>
+            Комментарий:
+            <textarea id="customer-message"></textarea>
+          </label>
+          <button type="submit" class="checkout-confirm">
+            Подтвердить заказ
+          </button>
+        </form>
+        <p id="order-success" class="order-success" style="display: none">
+          ✅ Спасибо за заказ! Мы скоро свяжемся с вами.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
