@@ -37,8 +37,6 @@ async function loadProducts() {
   }
 }
 
-loadProducts(); // загрузка товаров при загрузке страницы
-
 let cart = [];
 
 const productList = document.getElementById("product-list"); // Список товаров
@@ -173,5 +171,5 @@ confirmNo.addEventListener("click", () => {
   confirmBox.style.display = "none"; // закрываем модальное окно подтверждения
   clearCartButton.style.display = "block"; // показываем кнопку "Очистить корзину"
 }); // обработчик события на кнопку "Нет"
-
+loadProducts(); // загрузка товаров при загрузке страницы
 loadCart(); // загружаем корзину при загрузке страницы
