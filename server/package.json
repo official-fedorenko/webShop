@@ -1,5 +1,5 @@
 {
-  "name": "webshop-server",
+  "name": "webshop-backend",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
