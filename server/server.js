@@ -12,6 +12,11 @@ const products = [
   { id: 6, name: "Перчатки", price: 6000 },
 ];
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 app.get("/api/products", (req, res) => {
   res.json(products);
 });
