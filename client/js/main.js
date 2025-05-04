@@ -3,7 +3,7 @@
 async function loadProducts() {
   try {
     const res = await fetch(
-      "https://webshop-backend-ekul.onrender.com/api/products"
+      "https://webshop-backends.onrender.com/api/products"
     ); // Запрос к API
     const data = await res.json();
 
