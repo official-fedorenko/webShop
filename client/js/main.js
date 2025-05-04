@@ -1,12 +1,42 @@
 // массив товаров
-const products = [
-  { id: 1, name: "Футболка", price: 1000 },
-  { id: 2, name: "Штаны", price: 2000 },
-  { id: 3, name: "Кроссовки", price: 3000 },
-  { id: 4, name: "Куртка", price: 4000 },
-  { id: 5, name: "Шапка", price: 5000 },
-  { id: 6, name: "Перчатки", price: 6000 },
-];
+
+async function loadProducts() {
+  try {
+    const res = await fetch("https://webshop-backend-ekul.onrender.com"); // Запрос к API
+    const data = await res.json();
+
+    data.forEach((item) => {
+      const card = document.createElement("div");
+      card.classList.add("product-card");
+      card.innerHTML = `
+        <h3>${item.name}</h3>
+        <p>${item.price}</p>
+        <button>Добавить в корзину</button>
+      `;
+      productList.appendChild(card);
+
+      const addButton = card.querySelector("button");
+      addButton.addEventListener("click", () => {
+        const existingItem = cart.find((product) => product.id === item.id);
+        if (existingItem) {
+          existingItem.count += 1;
+        } else {
+          cart.push({ ...item, count: 1 });
+        }
+
+        const totalQuantity = cart.reduce((sum, p) => sum + p.count, 0);
+        cartCount.textContent = totalQuantity;
+        renderCart();
+        saveCart();
+      });
+    });
+  } catch (error) {
+    console.error("Ошибка при загрузке товаров:", error);
+  }
+}
+
+loadProducts(); // загрузка товаров при загрузке страницы
+
 let cart = [];
 
 const productList = document.getElementById("product-list"); // Список товаров
