@@ -2,7 +2,9 @@
 
 async function loadProducts() {
   try {
-    const res = await fetch("https://webshop-backend-ekul.onrender.com"); // Запрос к API
+    const res = await fetch(
+      "https://webshop-backend-ekul.onrender.com/api/products"
+    ); // Запрос к API
     const data = await res.json();
 
     data.forEach((item) => {
@@ -41,40 +43,6 @@ let cart = [];
 
 const productList = document.getElementById("product-list"); // Список товаров
 const cartCount = document.getElementById("cart-count"); // Счетчик товаров в корзине
-
-// Перебираем массив товаров и создаем карточки
-products.forEach((item) => {
-  const card = document.createElement("div");
-  card.classList.add("product-card");
-  card.innerHTML = `
-    <h3>${item.name}</h3>
-    <p>${item.price}</p>
-    <button>Добавить в корзину</button>
-    `;
-  productList.appendChild(card);
-  // Добавляем обработчик события на кнопку "Добавить в корзину"
-  const addButton = card.querySelector("button"); // кнопка "Добавить в корзину"
-  addButton.addEventListener("click", () => {
-    const existingItem = cart.find(
-      (productInCart) => productInCart.id === item.id
-    ); // проверяем, есть ли товар в корзине
-    if (existingItem) {
-      // если товар уже есть в корзине
-      existingItem.count += 1; // увеличиваем количество товара в корзине
-    } else {
-      // если товара нет в корзине
-      cart.push({ ...item, count: 1 }); // добавляем товар в корзину
-    }
-    const totalQuantity = cart.reduce(
-      (acc, productInCart) => acc + productInCart.count,
-      0
-    ); // считаем общее количество товаров в корзине
-    cartCount.textContent = totalQuantity; // обновляем счетчик товаров в корзине
-
-    renderCart(); // отображаем товары в корзине
-    saveCart(); // 💾 сохранить после добавления
-  });
-});
 
 // модальное окно корзины
 const cartButton = document.getElementById("cart-toggle"); // кнопка "Корзина"
