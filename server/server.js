@@ -6,8 +6,11 @@ const cors = require("cors"); // подключаем CORS
 const app = express();
 
 // Разрешаем CORS для всех источников (временно, можно ограничить)
-app.use(cors());
-
+app.use(
+  cors({
+    origin: "https://official-fedorenko.github.io", // разрешить запросы с GitHub Pages
+  })
+);
 // Простой массив товаров
 const products = [
   { id: 1, name: "Футболка", price: 1000 },
